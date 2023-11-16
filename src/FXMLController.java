@@ -2,8 +2,6 @@ import Helper.*;
 import Model.Bashekim;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -45,15 +43,30 @@ public class FXMLController {
     @FXML
     private Button btn_exit;
 
+    public Label getUsersTitle() {
+        return usersTitle;
+    }
+
     @FXML
-    private Label usersNameTitle;
+    private Label usersTitle;
+
+
 
     @FXML
     void handleLoginButton(ActionEvent event) {
         doctorLogin();
     }
+    @FXML
+    void exitButon(ActionEvent event) throws IOException {
+        exitButon();
+    }
 
     private DBConnection conn = new DBConnection();
+
+    public void exitButon() throws IOException {
+        hospitalOtomGUI.changeScene("View/login.fxml",501,450,null);
+
+    }
 
     public void doctorLogin() {
         if (tcDoktor.getText().length() == 0 || pwDoktor.getText().length() == 0) {
@@ -72,8 +85,9 @@ public class FXMLController {
                         bashekim.setName(rs.getString("name"));
                         bashekim.setTc_no(rs.getString("tc_no"));
                         bashekim.setType(rs.getString("type"));
-                        hospitalOtomGUI h = new hospitalOtomGUI();
-                        h.changeScene("View/bashekim.fxml");
+                        //Scene changing
+                        hospitalOtomGUI.changeScene("View/bashekim.fxml", 750, 500,bashekim.getName());
+
 
                     }
 
@@ -81,7 +95,6 @@ public class FXMLController {
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
-
         }
 
     }

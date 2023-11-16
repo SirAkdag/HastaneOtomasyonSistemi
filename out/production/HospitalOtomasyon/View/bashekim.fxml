@@ -7,16 +7,19 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLController">
    <children>
-      <Label layoutX="35.0" layoutY="35.0" text="Hosgeldiniz Sayin ">
-         <font>
-            <Font name="YuGothic Medium" size="15.0" />
-         </font>
-      </Label>
-      <Button fx:id="btn_exit" layoutX="602.0" layoutY="34.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="95.0" text="Cikis Yap">
+      <Button fx:id="btn_exit" layoutX="602.0" layoutY="34.0" mnemonicParsing="false" onAction="#exitButon" prefHeight="32.0" prefWidth="95.0" text="Cikis Yap">
          <font>
             <Font name="YuGothic Medium" size="15.0" />
          </font>
       </Button>
-      <Label fx:id="usersNameTitle" layoutX="175.0" layoutY="35.0" text="Label" />
+      <Label layoutX="31.0" layoutY="42.0" text="Welcome Mr. ">
+         <font>
+            <Font name="YuGothic Medium" size="13.0" />
+         </font></Label>
+      <Label fx:id="usersTitle" layoutX="113.0" layoutY="40.0" prefHeight="17.0" prefWidth="223.0">
+         <font>
+            <Font name="YuGothic Medium" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
