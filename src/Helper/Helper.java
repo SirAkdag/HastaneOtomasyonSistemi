@@ -8,18 +8,13 @@ import java.util.Optional;
 public class Helper {
 
     public static void showMsg(String str){
-        String msg;
+        String msg = switch (str) {
+            case "fill" -> "Lütfen tüm alanlari doldurunuz.";
+            case "success" -> "Kisi eklemesi basarili.";
+            case "check" -> "Sisteme girilen TC numarali doktor, sistemde zaten mevcuttur.";
+            default -> str;
+        };
 
-        switch (str){
-            case "fill":
-                msg = "Lütfen tüm alanlari doldurunuz.";
-                break;
-            case "success":
-                msg = "Kisi eklemesi basarili.";
-                break;
-            default:
-                msg = str;
-        }
         Alert dialog = new Alert(Alert.AlertType.INFORMATION,msg, ButtonType.OK);
         dialog.setHeaderText("Mesaj");
         dialog.showAndWait();
@@ -39,4 +34,7 @@ public class Helper {
         Optional<ButtonType> result = dialog.showAndWait();
         return result.isPresent() & result.get() == ButtonType.YES;
     }
+
+
+
 }

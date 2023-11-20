@@ -47,7 +47,7 @@ public class hospitalOtomGUI extends Application {
         controller.getUsersTitle().setText(userName);
 
         // Initialize the controller after loading the FXML
-        controller.initialize();
+        controller.doktorList();
 
     }
 

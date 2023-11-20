@@ -8,14 +8,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static Model.Bashekim.deleteDoktor;
 
 
 public class FXMLController {
@@ -57,7 +55,7 @@ public class FXMLController {
     @FXML
     void silmeIslemi(ActionEvent event) throws SQLException {
         silmeIslemi();
-        initialize();
+        doktorList();
 
 
     }
@@ -65,8 +63,10 @@ public class FXMLController {
 
     @FXML
     void ekleIslemi(ActionEvent event) throws SQLException {
-        ekleIslemi();
-        initialize();
+        if (tcNoCheck()) {
+            ekleIslemi();
+            doktorList();
+        }
     }
 
 
@@ -114,7 +114,7 @@ public class FXMLController {
 
     }
 
-    private DBConnection conn = new DBConnection();
+    private final DBConnection conn = new DBConnection();
 
 
     public void doctorLogin() {
@@ -146,7 +146,7 @@ public class FXMLController {
     }
 
 
-    void initialize() {
+    void doktorList() {
         try {
             Connection con = conn.connDB();
             Statement st = con.createStatement();
@@ -185,13 +185,14 @@ public class FXMLController {
             e.printStackTrace();
         }
     }
+
     public void silmeIslemi() throws SQLException {
-        if (silKullaniciID.getText().length() == 0){
+        if (silKullaniciID.getText().length() == 0) {
             Helper.showMsg("Lütfen bir doktor seciniz.");
-        }else {
-            if (Helper.confirm("sure")){
+        } else {
+            if (Helper.confirm("sure")) {
                 boolean control = Bashekim.deleteDoktor(silKullaniciID.getText());
-                if (control){
+                if (control) {
                     silKullaniciID.setText(null);
                 }
             }
@@ -211,6 +212,22 @@ public class FXMLController {
             }
         }
 
+    }
+
+    public boolean tcNoCheck() throws SQLException {
+        Connection con = conn.connDB();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT tc_no FROM users");
+
+        while (rs.next()) {
+            String existingTcNo = rs.getString("tc_no");
+            if (ekleTcNo.getText().equals(existingTcNo)) {
+                Helper.showMsg("check");
+                ekleTcNo.setText(null);
+                return false;
+            }
+        }
+        return true;
     }
 
 
