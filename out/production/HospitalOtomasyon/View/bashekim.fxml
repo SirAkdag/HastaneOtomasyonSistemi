@@ -2,24 +2,75 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLController">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLController">
    <children>
-      <Button fx:id="btn_exit" layoutX="602.0" layoutY="34.0" mnemonicParsing="false" onAction="#exitButon" prefHeight="32.0" prefWidth="95.0" text="Cikis Yap">
+      <Button layoutX="606.0" layoutY="26.0" mnemonicParsing="false" onAction="#exitButon" prefHeight="32.0" prefWidth="95.0" text="Cikis Yap">
          <font>
             <Font name="YuGothic Medium" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="31.0" layoutY="42.0" text="Welcome Mr. ">
+      <Label layoutX="31.0" layoutY="32.0" text="Hosgeldiniz, Sayin">
          <font>
-            <Font name="YuGothic Medium" size="13.0" />
+            <Font name="YuGothic Medium" size="15.0" />
          </font></Label>
-      <Label fx:id="usersTitle" layoutX="113.0" layoutY="40.0" prefHeight="17.0" prefWidth="223.0">
+      <Label fx:id="usersTitle" layoutX="160.0" layoutY="31.0" prefHeight="17.0" prefWidth="223.0">
          <font>
-            <Font name="YuGothic Medium" size="13.0" />
+            <Font name="YuGothic Medium" size="15.0" />
          </font>
       </Label>
+      <ScrollPane layoutX="31.0" layoutY="67.0" prefHeight="402.0" prefWidth="505.0">
+         <content>
+            <TableView fx:id="doktorTableView" prefHeight="400.0" prefWidth="503.0">
+              <columns>
+                <TableColumn fx:id="idColumn" prefWidth="66.0" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="158.0" text="Ad Soyad" />
+                  <TableColumn fx:id="tcColumn" minWidth="0.0" prefWidth="169.0" text="T.C. No" />
+                  <TableColumn fx:id="pwColumn" prefWidth="109.0" text="Sifre" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <Label layoutX="557.0" layoutY="85.0" text="Ad Soyad">
+         <font>
+            <Font name="YuGothic Medium" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ekleAdSoyad" layoutX="557.0" layoutY="110.0" />
+      <Label layoutX="557.0" layoutY="148.0" text="T.C No">
+         <font>
+            <Font name="YuGothic Medium" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ekleTcNo" layoutX="557.0" layoutY="173.0" />
+      <Label layoutX="555.0" layoutY="208.0" text="Sifre">
+         <font>
+            <Font name="YuGothic Medium" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="572.0" layoutY="297.0" mnemonicParsing="false" onAction="#ekleIslemi" prefHeight="40.0" prefWidth="150.0" text="Ekle">
+         <font>
+            <Font name="YuGothic Medium" size="21.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="ekleSifre" layoutX="557.0" layoutY="238.0" />
+      <TextField fx:id="silKullaniciID" layoutX="558.0" layoutY="404.0" />
+      <Label layoutX="557.0" layoutY="380.0" text="Kullanici ID">
+         <font>
+            <Font name="YuGothic Medium" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="572.0" layoutY="439.0" mnemonicParsing="false" onAction="#silmeIslemi" prefHeight="40.0" prefWidth="150.0" text="Sil">
+         <font>
+            <Font name="YuGothic Medium" size="21.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

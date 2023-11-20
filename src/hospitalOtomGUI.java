@@ -9,8 +9,6 @@ import java.io.IOException;
 public class hospitalOtomGUI extends Application {
 
     private static Stage primaryStage;
-    private static FXMLController fxmlController;
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -23,6 +21,14 @@ public class hospitalOtomGUI extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+
+    public static void loginScene() throws IOException {
+        Parent root = FXMLLoader.load(hospitalOtomGUI.class.getResource("View/login.fxml"));
+        Scene loginScene = new Scene(root, 501, 450);
+        primaryStage.setScene(loginScene);
+
+    }
+
 
     public static void changeScene(String fxml, double width, double height, String userName) throws IOException {
         FXMLLoader loader = new FXMLLoader(hospitalOtomGUI.class.getResource(fxml));
@@ -39,7 +45,13 @@ public class hospitalOtomGUI extends Application {
 
         // Access and update usersTitle through the controller
         controller.getUsersTitle().setText(userName);
+
+        // Initialize the controller after loading the FXML
+        controller.initialize();
+
     }
+
+
 
     public static void main(String[] args) {
         launch(args);
